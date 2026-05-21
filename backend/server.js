@@ -31,7 +31,7 @@ app.use("/upload", require("./routes/upload"));
 // ================= ROOT =================
 app.get("/",(req,res)=>{
   res.json({
-    message:"API Futsal Booking Jalan 🚀",
+    message:"API Futsal Booking Jalan ",
     endpoints:[
       "/register",
       "/auth/login",
