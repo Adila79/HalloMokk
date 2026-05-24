@@ -4,8 +4,7 @@ import { useState } from "react";
 
 export default function Home() {
 
-  // State data lapangan
-  const [lapangan, setLapangan] = useState([
+  const [lapangan] = useState([
     {
       id: 1,
       nama: "Lapangan Futsal",
@@ -18,15 +17,12 @@ export default function Home() {
     },
   ]);
 
-  // State form booking
   const [nama, setNama] = useState("");
   const [tanggal, setTanggal] = useState("");
 
-  // Submit booking
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validasi
     if (!nama || !tanggal) {
       alert("Nama dan tanggal wajib diisi!");
       return;
@@ -45,79 +41,163 @@ Tanggal: ${tanggal}
   };
 
   return (
-    <div className="p-10 bg-gray-100 min-h-screen">
+    <main className="min-h-screen bg-gray-100 text-black">
 
-      <h1 className="text-3xl font-bold mb-6">
-        Daftar Lapangan
-      </h1>
+      {/* Navbar */}
+      <nav className="flex items-center justify-between px-8 py-5 bg-white shadow-md">
 
-      {/* Data Lapangan */}
-      <div className="grid gap-4 mb-10">
+        <h1 className="text-2xl font-bold text-sky-400">
+          HalloMok
+        </h1>
 
-        {lapangan.map((item) => (
-          <div
-            key={item.id}
-            className="bg-white p-4 rounded-lg shadow"
-          >
-            <h2 className="text-xl font-semibold">
-              {item.nama}
-            </h2>
+        <ul className="flex gap-6 font-medium text-black">
 
-            <p>
-              Harga: Rp {item.harga}
-            </p>
-          </div>
-        ))}
+          <li className="hover:text-sky-400 cursor-pointer">
+            Home
+          </li>
 
-      </div>
+          <li className="hover:text-sky-400 cursor-pointer">
+            Lapangan
+          </li>
 
-      {/* Form Booking */}
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-xl shadow-lg max-w-md"
-      >
+          <li className="hover:text-sky-400 cursor-pointer">
+            Booking
+          </li>
 
-        <h2 className="text-2xl font-bold mb-5">
-          Form Booking
-        </h2>
+        </ul>
 
-        {/* Input Nama */}
-        <label className="block mb-2 font-medium">
-          Nama Pemesan
-        </label>
-
-        <input
-          type="text"
-          placeholder="Masukkan Nama"
-          title="Input nama pemesan"
-          value={nama}
-          onChange={(e) => setNama(e.target.value)}
-          className="border p-2 w-full mb-4 rounded"
-        />
-
-        {/* Input Tanggal */}
-        <label className="block mb-2 font-medium">
-          Pilih Tanggal
-        </label>
-
-        <input
-        type="date"
-        title="Pilih tanggal booking"
-        value={tanggal}
-        onChange={(e) => setTanggal(e.target.value)}
-        className="border p-2 w-full mb-4 rounded"
-      />
-
-        {/* Tombol Submit */}
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white p-2 w-full rounded"
-        >
-          Booking Sekarang
+        <button className="px-5 py-2 text-black bg-sky-300 rounded-xl hover:bg-sky-400">
+          Login
         </button>
 
-      </form>
+      </nav>
 
-    </div>
+      {/* Hero Section */}
+      <section className="grid items-center grid-cols-1 md:grid-cols-2 gap-10 px-10 py-20 max-w-7xl mx-auto">
+
+        {/* Text */}
+        <div>
+
+          <p className="text-sky-400 font-semibold mb-3 uppercase">
+            Booking Lapangan Online
+          </p>
+
+          <h1 className="text-5xl font-bold leading-tight mb-6 text-black">
+            Main Futsal
+            <span className="text-sky-400">
+              {" "}Lebih Mudah
+            </span>
+          </h1>
+
+          <p className="text-black text-lg mb-8">
+            Pesan lapangan futsal favoritmu kapan saja
+            dan dimana saja dengan sistem booking online.
+          </p>
+
+          <div className="flex gap-4">
+
+            <button className="bg-sky-300 hover:bg-sky-400 text-black px-6 py-3 rounded-2xl">
+              Booking Sekarang
+            </button>
+
+            <button className="border-2 border-sky-400 text-black hover:bg-sky-400 px-6 py-3 rounded-2xl">
+              Lihat Lapangan
+            </button>
+
+          </div>
+
+        </div>
+
+        {/* Image */}
+        <div>
+          <img
+            src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1200&auto=format&fit=crop"
+            alt="Futsal"
+            className="rounded-3xl shadow-2xl w-full"
+          />
+        </div>
+
+      </section>
+
+      {/* Daftar Lapangan */}
+      <section className="px-10 pb-10">
+
+        <h1 className="text-3xl font-bold mb-6 text-black">
+          Daftar Lapangan
+        </h1>
+
+        <div className="grid md:grid-cols-2 gap-4 mb-10">
+
+          {lapangan.map((item) => (
+            <div
+              key={item.id}
+              className="bg-white p-6 rounded-2xl shadow"
+            >
+              <h2 className="text-2xl font-semibold mb-2 text-black">
+                {item.nama}
+              </h2>
+
+              <p className="text-black">
+                Harga: Rp {item.harga}
+              </p>
+            </div>
+          ))}
+
+        </div>
+
+      </section>
+
+      {/* Form Booking */}
+      <section className="px-10 pb-20">
+
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white p-8 rounded-3xl shadow-lg max-w-md"
+        >
+
+          <h2 className="text-2xl font-bold mb-6 text-black">
+            Form Booking
+          </h2>
+
+          {/* Nama */}
+          <label className="block mb-2 font-medium text-black">
+            Nama Pemesan
+          </label>
+
+          <input
+            type="text"
+            placeholder="Masukkan Nama"
+            title="Input nama pemesan"
+            value={nama}
+            onChange={(e) => setNama(e.target.value)}
+            className="border p-3 w-full mb-5 rounded-xl text-black"
+          />
+
+          {/* Tanggal */}
+          <label className="block mb-2 font-medium text-black">
+            Pilih Tanggal
+          </label>
+
+          <input
+            type="date"
+            title="Pilih tanggal booking"
+            value={tanggal}
+            onChange={(e) => setTanggal(e.target.value)}
+            className="border p-3 w-full mb-5 rounded-xl text-black"
+          />
+
+          {/* Button */}
+          <button
+            type="submit"
+            className="bg-sky-300 hover:bg-sky-400 text-black p-3 w-full rounded-xl"
+          >
+            Booking Sekarang
+          </button>
+
+        </form>
+
+      </section>
+
+    </main>
   );
 }
