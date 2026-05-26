@@ -37,7 +37,7 @@ export default function Features() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-gray-900 mb-4">
-            Mengapa Pilih <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">HalloMokk?</span>
+            Mengapa Pilih <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">HalloMokk?</span>
           </h2>
           <p className="text-xl text-gray-600">
             Ratusan ribu pengguna telah mempercayai kami untuk booking lapangan futsal
@@ -48,7 +48,7 @@ export default function Features() {
           {features.map((feature, idx) => (
             <div 
               key={idx} 
-              className="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8 hover:shadow-xl transition transform hover:scale-105 border border-orange-100"
+              className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 hover:shadow-xl transition transform hover:scale-105 border border-green-100"
             >
               <div className="text-5xl mb-4">{feature.icon}</div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">
