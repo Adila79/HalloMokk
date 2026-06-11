@@ -74,8 +74,8 @@ app.use((err,req,res,next)=>{
 
 
 // ================= SERVER =================
-const PORT=5000;
+const PORT = 5000;
 
-app.listen(PORT,()=>{
-  console.log(`Server jalan di http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server jalan di port ${PORT}`);
 });

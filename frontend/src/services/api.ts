@@ -1,12 +1,19 @@
-const API_URL = "http://localhost:3000";
-
+const API_URL = "http://192.168.56.1:5000";
 export async function getLapangan() {
   const response = await fetch(`${API_URL}/lapangan`);
-  return response.json();
+
+  console.log("STATUS :", response.status);
+
+  const data = await response.json();
+
+  console.log("DATA :", data);
+
+  return data;
 }
 
 export async function getBooking() {
   const response = await fetch(`${API_URL}/booking`);
+
   return response.json();
 }
 

@@ -3,9 +3,8 @@ const db = require("../db");
 const { success, error } = require("../utils/response");
 const { verifyToken, isAdmin } = require("../middleware/authMiddleware");
 
-
-// ================= GET (USER + ADMIN) =================
-router.get("/", verifyToken, async (req, res) => {
+// ================= GET (PUBLIC) =================
+router.get("/", async (req, res) => {
   try {
 
     const [data] = await db.query(
@@ -133,6 +132,5 @@ router.delete("/:id", verifyToken, isAdmin, async (req, res) => {
     );
   }
 });
-
 
 module.exports = router;
