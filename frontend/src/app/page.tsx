@@ -3,14 +3,19 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import LapanganPreview from "@/components/LapanganPreview";
 import Footer from "@/components/Footer";
+import Container from "@/components/Container";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <Hero />
-      <Features />
-      <LapanganPreview />
+
+      <Container>
+        <Hero />
+        <Features />
+        <LapanganPreview />
+      </Container>
+
       <Footer />
     </>
   );

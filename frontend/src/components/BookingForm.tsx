@@ -6,14 +6,21 @@ export default function BookingForm() {
 
   const [nama, setNama] = useState("");
   const [tanggal, setTanggal] = useState("");
+  
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!nama || !tanggal) {
-      alert("Nama dan tanggal wajib diisi!");
-      return;
-    }
+  setError("Nama dan tanggal wajib diisi!");
+  setSuccess("");
+  return;
+}
+
+setError("");
+setSuccess("");
 
     try {
 
@@ -30,20 +37,22 @@ export default function BookingForm() {
 
       const data = await response.json();
 
-      alert(data.message);
+setSuccess(data.message);
+setError("");
 
+setNama("");
+setTanggal("");
       console.log(data);
+}
 
-      setNama("");
-      setTanggal("");
+  catch (error) {
 
-    } catch (error) {
+  console.log(error);
 
-      console.log(error);
+  setError("Gagal mengirim booking");
+  setSuccess("");
 
-      alert("Gagal mengirim booking");
-
-    }
+}
   };
 
   return (
