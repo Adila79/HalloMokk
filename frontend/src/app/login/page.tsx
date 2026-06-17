@@ -1,43 +1,47 @@
 "use client";
 
 import Navbar from "@/components/Navbar";
-import axios from "axios";
+import { loginUser } from "@/services/api";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginPage() {
+  const router = useRouter();
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] =
+    useState("");
 
   const handleSubmit = async (
     e: React.FormEvent
   ) => {
-
     e.preventDefault();
 
-    if (!email || !password) {
-      alert("Email dan Password wajib diisi!");
-      return;
-    }
-
     try {
+      const data = await loginUser({
+        email,
+        password,
+      });
 
-      const response = await axios.get(
-        `http://localhost:5000/auth/login?email=${email}&password=${password}`
+      localStorage.setItem(
+        "token",
+        data.token
       );
 
-      console.log(response.data);
+      localStorage.setItem(
+        "user",
+        JSON.stringify(data.user)
+      );
 
-      alert("Login berhasil!");
+      alert("Login berhasil");
 
-    } catch (error) {
-
-      console.log(error);
-
-      alert("Login gagal!");
-
+      router.push("/");
+    } catch (error: any) {
+      alert(
+        error?.response?.data?.message ||
+          "Login gagal"
+      );
     }
-
   };
 
   return (
@@ -53,7 +57,6 @@ export default function LoginPage() {
           onSubmit={handleSubmit}
           className="flex flex-col gap-3 max-w-md"
         >
-
           <input
             type="email"
             placeholder="Email"
@@ -76,11 +79,10 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="bg-green-600 text-white p-2 rounded"
+            className="bg-green-600 text-white p-2"
           >
             Login
           </button>
-
         </form>
       </div>
     </>

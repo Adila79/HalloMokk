@@ -1,49 +1,52 @@
-const API_URL = "http://192.168.56.1:5000";
-export async function getLapangan() {
-  const response = await fetch(`${API_URL}/lapangan`);
+import axios from "axios";
 
-  console.log("STATUS :", response.status);
+const api = axios.create({
+  baseURL: "http://localhost:5000",
+});
 
-  const data = await response.json();
-
-  console.log("DATA :", data);
-
-  return data;
-}
-
-export async function getBooking() {
-  const response = await fetch(`${API_URL}/booking`);
-
-  return response.json();
-}
-
-export async function login(data: {
+export const loginUser = async (data: {
   email: string;
   password: string;
-}) {
-  const response = await fetch(`${API_URL}/auth/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+}) => {
+  const response = await api.post("/auth/login", data);
+  return response.data;
+};
 
-  return response.json();
-}
-
-export async function register(data: {
+export const registerUser = async (data: {
   nama: string;
   email: string;
   password: string;
-}) {
-  const response = await fetch(`${API_URL}/register`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+}) => {
+  const response = await api.post("/register", data);
+  return response.data;
+};
 
-  return response.json();
-}
+export const getLapangan = async () => {
+  const response = await api.get("/lapangan");
+
+  // karena backend pakai success(res,data,...)
+  return response.data.data;
+};
+
+export const createBooking = async (
+  data: {
+    lapangan_id: number;
+    tanggal: string;
+    jam: string;
+  },
+  token: string
+) => {
+  const response = await api.post(
+    "/booking",
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.data;
+};
+
+export default api;
