@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import {
   createBooking,
   getLapangan,
@@ -50,23 +49,36 @@ export default function BookingPage() {
     };
 
   const handleSubmit = async (
-    e: React.FormEvent
-  ) => {
-    e.preventDefault();
+  e: React.FormEvent
+) => {
+  e.preventDefault();
 
-    const token =
-      localStorage.getItem(
-        "token"
-      );
+  if (!lapanganId || !tanggal || !jam) {
+    alert("Semua field wajib diisi!");
+    return;
+  }
 
-    if (!token) {
-      alert(
-        "Silakan login dulu"
-      );
-      return;
-    }
+  const today = new Date().toISOString().split("T")[0];
 
-    try {
+  if (tanggal < today) {
+    alert("Tanggal booking tidak boleh kurang dari hari ini!");
+    return;
+  }
+
+  if (jam < "08:00" || jam > "22:00") {
+    alert("Jam booking hanya boleh antara 08:00 - 22:00!");
+    return;
+  }
+
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("Silakan login dulu");
+    return;
+  }
+
+  try {
+    // create booking
       await createBooking(
         {
           lapangan_id:
@@ -93,91 +105,87 @@ export default function BookingPage() {
   };
 
   return (
-    <>
-      <Navbar />
+    <div className="p-10 flex justify-center">
+      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+        <h1 className="text-3xl font-bold mb-5 text-black">
+          Booking Lapangan
+        </h1>
 
-      <div className="p-10 flex justify-center">
-        <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-          <h1 className="text-3xl font-bold mb-5 text-black">
-            Booking Lapangan
-          </h1>
-
-          <form
-            onSubmit={
-              handleSubmit
+        <form
+          onSubmit={
+            handleSubmit
+          }
+          className="flex flex-col gap-4"
+        >
+          <select
+            value={
+              lapanganId
             }
-            className="flex flex-col gap-4"
+            onChange={(e) =>
+              setLapanganId(
+                e.target
+                  .value
+              )
+            }
+            className="border p-3 rounded text-black"
+            required
           >
-            <select
-              value={
-                lapanganId
-              }
-              onChange={(e) =>
-                setLapanganId(
-                  e.target
-                    .value
-                )
-              }
-              className="border p-3 rounded text-black"
-              required
-            >
-              <option value="">
-                Pilih Lapangan
-              </option>
+            <option value="">
+              Pilih Lapangan
+            </option>
 
-              {lapangan.map(
-                (item) => (
-                  <option
-                    key={
-                      item.id
-                    }
-                    value={
-                      item.id
-                    }
-                  >
-                    {
-                      item.nama_lapangan
-                    }
-                  </option>
-                )
-              )}
-            </select>
+            {lapangan.map(
+              (item) => (
+                <option
+                  key={
+                    item.id
+                  }
+                  value={
+                    item.id
+                  }
+                >
+                  {
+                    item.nama_lapangan
+                  }
+                </option>
+              )
+            )}
+          </select>
 
-            <input
-              type="date"
-              value={tanggal}
-              onChange={(e) =>
-                setTanggal(
-                  e.target
-                    .value
-                )
-              }
-              className="border p-3 rounded text-black"
-              required
-            />
+          <input
+            type="date"
+            value={tanggal}
+            onChange={(e) =>
+              setTanggal(
+                e.target
+                  .value
+              )
+            }
+            className="border p-3 rounded text-black"
+            required
+          />
 
-            <input
-              type="time"
-              value={jam}
-              onChange={(e) =>
-                setJam(
-                  e.target
-                    .value
-                )
-              }
-              className="border p-3 rounded text-black"
-              required
-            />
+          <input
+            type="time"
+            value={jam}
+            onChange={(e) =>
+              setJam(
+                e.target
+                  .value
+              )
+            }
+            className="border p-3 rounded text-black"
+            required
+          />
 
-            <button
-              type="submit"
-              className="bg-green-600 text-white py-3 rounded-lg"
-            >
-              Booking Sekarang
-            </button>
-          </form>
-        </div>
+          <button
+            type="submit"
+            className="bg-green-600 text-white py-3 rounded-lg"
+          >
+            Booking Sekarang
+          </button>
+        </form>
       </div>
-    </>
+    </div>
   );
 }

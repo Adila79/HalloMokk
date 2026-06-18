@@ -7,16 +7,10 @@ import Container from "@/components/Container";
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
-
-      <Container>
-        <Hero />
-        <Features />
-        <LapanganPreview />
-      </Container>
-
-      <Footer />
-    </>
+    <Container>
+      <Hero />
+      <Features />
+      <LapanganPreview />
+    </Container>
   );
 }

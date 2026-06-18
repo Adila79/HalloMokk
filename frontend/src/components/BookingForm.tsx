@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Button from "@/components/Button";
+import Input from "@/components/Input";
 
 export default function BookingForm() {
 
@@ -72,33 +74,33 @@ setTanggal("");
           Nama Pemesan
         </label>
 
-        <input
-          type="text"
-          value={nama}
-          onChange={(e) => setNama(e.target.value)}
-          placeholder="Masukkan Nama"
-          className="border p-3 w-full mb-5 rounded-xl text-black"
-        />
+        <Input
+  type="text"
+  value={nama}
+  onChange={(e) => setNama(e.target.value)}
+  placeholder="Masukkan Nama"
+         className="mb-5"
+/>
 
         {/* Tanggal */}
         <label className="block mb-2 font-medium text-black">
           Tanggal Booking
         </label>
 
-        <input
-          type="date"
-          value={tanggal}
-          onChange={(e) => setTanggal(e.target.value)}
-          className="border p-3 w-full mb-5 rounded-xl text-black"
-        />
+        <Input
+  type="date"
+  value={tanggal}
+  onChange={(e) => setTanggal(e.target.value)}
+  className="mb-5"
+/>
 
         {/* Button */}
-        <button
-          type="submit"
-          className="bg-sky-300 hover:bg-sky-400 text-black p-3 w-full rounded-xl"
-        >
-          Booking Sekarang
-        </button>
+        <Button
+  type="submit"
+  className="w-full"
+>
+  Booking Sekarang
+</Button>
 
       </form>
 
