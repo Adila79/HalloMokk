@@ -23,8 +23,6 @@ export const registerUser = async (data: {
 
 export const getLapangan = async () => {
   const response = await api.get("/lapangan");
-
-  // karena backend pakai success(res,data,...)
   return response.data.data;
 };
 
@@ -47,6 +45,22 @@ export const createBooking = async (
   );
 
   return response.data;
+};
+
+// TAMBAHKAN INI
+export const getBooking = async (
+  token: string
+) => {
+  const response = await api.get(
+    "/booking",
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.data.data;
 };
 
 export default api;

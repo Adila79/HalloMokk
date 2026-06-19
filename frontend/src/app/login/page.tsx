@@ -11,25 +11,24 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (
-  e: React.FormEvent
-) => {
-  e.preventDefault();
+    e: React.FormEvent
+  ) => {
+    e.preventDefault();
 
-  if (!email || !password) {
-    alert("Email dan Password wajib diisi!");
-    return;
-  }
+    if (!email || !password) {
+      alert("Email dan Password wajib diisi!");
+      return;
+    }
 
-  const emailRegex =
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!emailRegex.test(email)) {
-    alert("Format email tidak valid!");
-    return;
-  }
+    if (!emailRegex.test(email)) {
+      alert("Format email tidak valid!");
+      return;
+    }
 
-  try {
-    
+    try {
       const data = await loginUser({
         email,
         password,
@@ -57,42 +56,62 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="p-10">
-      <h1 className="text-3xl font-bold mb-5">
-        Login
-      </h1>
+    <main className="min-h-screen flex items-center justify-center bg-gray-100">
 
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-3 max-w-md"
-      >
-        <input
-          type="email"
-          placeholder="Email"
-          className="border p-2"
-          value={email}
-          onChange={(e) =>
-            setEmail(e.target.value)
-          }
-        />
+      <div className="bg-white p-8 rounded-3xl shadow-lg w-full max-w-md">
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="border p-2"
-          value={password}
-          onChange={(e) =>
-            setPassword(e.target.value)
-          }
-        />
+        <h1 className="text-3xl font-bold text-center text-sky-400 mb-8">
+          Login HalloMok
+        </h1>
 
-        <button
-          type="submit"
-          className="bg-green-600 text-white p-2"
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4"
         >
-          Login
-        </button>
-      </form>
-    </div>
+
+          <div>
+            <label className="block mb-2 text-black font-medium">
+              Email
+            </label>
+
+            <input
+              type="email"
+              placeholder="Masukkan Email"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
+              className="w-full border p-3 rounded-xl text-black"
+            />
+          </div>
+
+          <div>
+            <label className="block mb-2 text-black font-medium">
+              Password
+            </label>
+
+            <input
+              type="password"
+              placeholder="Masukkan Password"
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
+              className="w-full border p-3 rounded-xl text-black"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-sky-300 hover:bg-sky-400 text-black p-3 rounded-xl font-semibold transition"
+          >
+            Login
+          </button>
+
+        </form>
+
+      </div>
+
+    </main>
   );
 }
