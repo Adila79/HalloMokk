@@ -25,6 +25,12 @@ export default function Navbar() {
             Home
           </Link>
 
+          <Link href="/profile">
+
+          Profile
+
+         </Link>
+
           <Link
             href="/booking"
             className="hover:text-green-100 transition font-medium"

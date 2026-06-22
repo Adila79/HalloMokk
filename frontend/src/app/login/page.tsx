@@ -37,13 +37,37 @@ export default function LoginPage() {
       });
 
       // simpan token
-      localStorage.setItem(
-        "token",
-        data.token
-      );
 
-      // simpan user ke Context API
-      login(data.user);
+localStorage.setItem(
+
+"token",
+
+data.token
+
+);
+
+// simpan data user
+
+localStorage.setItem(
+
+"user",
+
+JSON.stringify(data.user)
+
+);
+
+// simpan ke Context API
+
+login(data.user);
+
+// simpan data user
+localStorage.setItem(
+  "user",
+  JSON.stringify(data.user)
+);
+
+// simpan user ke Context API
+login(data.user);
 
       alert("Login berhasil");
 

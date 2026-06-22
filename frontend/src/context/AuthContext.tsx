@@ -25,9 +25,11 @@ export const AuthProvider = ({
   };
 
   const logout = () => {
-    setUser(null);
-    localStorage.removeItem("user");
-  };
+  setUser(null);
+
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+};
 
   return (
     <AuthContext.Provider

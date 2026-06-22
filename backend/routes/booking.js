@@ -72,8 +72,15 @@ router.get("/me", verifyToken, async (req, res) => {
 // ================== POST BOOKING ==================
 router.post("/", verifyToken, async (req, res) => {
   try {
-    const user_id = req.user.id; // ambil dari token (AMAN)
+
+    console.log("TOKEN USER =", req.user);
+    console.log("BODY =", req.body);
+
+    const user_id = req.user.id;
     const { lapangan_id, tanggal, jam } = req.body;
+
+    console.log("USER ID =", user_id);
+    console.log("LAPANGAN ID =", lapangan_id);
 
     // VALIDASI INPUT
     if (!lapangan_id || !tanggal || !jam) {
@@ -83,7 +90,6 @@ router.post("/", verifyToken, async (req, res) => {
       });
     }
 
-    // CEK LAPANGAN
     const [lapangan] = await db.query(
       "SELECT id FROM lapangan WHERE id = ?",
       [lapangan_id]
@@ -96,7 +102,6 @@ router.post("/", verifyToken, async (req, res) => {
       });
     }
 
-    // CEK JADWAL BENTROK
     const [cek] = await db.query(
       "SELECT id FROM booking WHERE lapangan_id = ? AND tanggal = ? AND jam = ?",
       [lapangan_id, tanggal, jam]
@@ -109,7 +114,6 @@ router.post("/", verifyToken, async (req, res) => {
       });
     }
 
-    // INSERT
     await db.query(
       "INSERT INTO booking (user_id, lapangan_id, tanggal, jam) VALUES (?, ?, ?, ?)",
       [user_id, lapangan_id, tanggal, jam]
