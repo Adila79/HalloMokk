@@ -1,11 +1,13 @@
 "use client";
 
 import { loginUser } from "@/services/api";
+import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { login } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,15 +36,14 @@ export default function LoginPage() {
         password,
       });
 
+      // simpan token
       localStorage.setItem(
         "token",
         data.token
       );
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify(data.user)
-      );
+      // simpan user ke Context API
+      login(data.user);
 
       alert("Login berhasil");
 
@@ -56,8 +57,7 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-100">
-
+    <main className="min-h-screen flex items-center justify-center bg-sky-100 p-6">
       <div className="bg-white p-8 rounded-3xl shadow-lg w-full max-w-md">
 
         <h1 className="text-3xl font-bold text-center text-sky-400 mb-8">
@@ -111,7 +111,6 @@ export default function LoginPage() {
         </form>
 
       </div>
-
     </main>
   );
 }
