@@ -18,7 +18,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-green-600 text-white shadow-md relative z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
         {/* Brand/Logo */}
         <Link href="/" className="flex items-center gap-2 cursor-pointer">
           <span className="text-2xl">⚽</span>
@@ -124,7 +124,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-green-700 border-t border-green-800 shadow-inner px-6 py-4 space-y-3 flex flex-col transition-all duration-300">
+        <div className="md:hidden bg-green-700 border-t border-green-800 shadow-inner px-4 sm:px-6 py-4 space-y-3 flex flex-col transition-all duration-300">
           <Link
             href="/"
             onClick={handleLinkClick}

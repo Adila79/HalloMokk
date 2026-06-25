@@ -58,14 +58,14 @@ setTanggal("");
   };
 
   return (
-    <section className="px-10 py-20 bg-gray-100">
+    <section className="px-4 sm:px-10 py-12 md:py-20 bg-gray-100">
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-3xl shadow-lg max-w-md mx-auto"
+        className="bg-white p-6 sm:p-8 rounded-3xl shadow-lg max-w-md mx-auto"
       >
 
-        <h2 className="text-3xl font-bold mb-6 text-black">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-black">
           Form Booking
         </h2>
 

@@ -128,14 +128,14 @@ function PembayaranContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 py-12 px-4 md:px-8 text-black">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 py-8 sm:py-12 px-4 md:px-8 text-black">
       <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-start">
         
         {/* Left Column: Booking details & instructions */}
-        <div className="bg-white/80 backdrop-blur-sm p-6 md:p-8 rounded-3xl shadow-xl border border-white space-y-6">
+        <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-3xl shadow-xl border border-white space-y-6">
           <div>
             <span className="text-sm font-semibold text-green-600 uppercase tracking-wider">Langkah Terakhir</span>
-            <h1 className="text-3xl font-extrabold text-gray-900 mt-1">Pembayaran</h1>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-1">Pembayaran</h1>
             <p className="text-gray-500 text-sm mt-1">Segera selesaikan pembayaran Anda agar jadwal tidak hangus.</p>
           </div>
 
@@ -191,17 +191,17 @@ function PembayaranContent() {
         {/* Right Column: Payment Form */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-gray-100 space-y-6"
+          className="bg-white p-4 sm:p-6 md:p-8 rounded-3xl shadow-xl border border-gray-100 space-y-6"
         >
           <div>
-            <h2 className="text-2xl font-bold text-gray-800">Form Pembayaran</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Form Pembayaran</h2>
             <p className="text-gray-500 text-sm mt-1">Pilih metode dan unggah bukti transfer.</p>
           </div>
 
           {/* Payment Method Selector */}
           <div className="space-y-3">
             <label className="block text-sm font-semibold text-gray-700">Metode Pembayaran</label>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 { id: "Transfer BCA", label: "Transfer BCA" },
                 { id: "Transfer Mandiri", label: "Transfer Mandiri" },

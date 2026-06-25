@@ -2,15 +2,15 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-br from-green-50 via-emerald-50 to-green-100 min-h-screen flex items-center">
-      <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+    <section className="bg-gradient-to-br from-green-50 via-emerald-50 to-green-100 min-h-screen flex items-center w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-20 grid md:grid-cols-2 gap-12 items-center w-full">
         {/* Left Content */}
         <div className="space-y-8">
           <div>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-4">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-4">
               Pesan Futsal
             </h1>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-800">
               Dengan Mudah
             </h2>
           </div>
@@ -22,26 +22,26 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <Link href="/booking" className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:shadow-lg hover:scale-105 transition transform">
+            <Link href="/booking" className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:shadow-lg hover:scale-105 transition transform">
               Mulai Booking
             </Link>
-            <Link href="#features" className="border-2 border-green-600 text-green-600 px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-green-50 transition">
+            <Link href="#features" className="border-2 border-green-600 text-green-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-green-50 transition">
               Pelajari Lebih
             </Link>
           </div>
 
           {/* Stats */}
           <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-8">
-            <div className="bg-white rounded-lg p-3 sm:p-4 shadow-md text-center">
-              <p className="text-2xl sm:text-3xl font-bold text-green-600">500+</p>
+            <div className="bg-white rounded-lg p-2.5 sm:p-4 shadow-md text-center">
+              <p className="text-xl sm:text-3xl font-bold text-green-600">500+</p>
               <p className="text-xs sm:text-sm text-gray-600">Lapangan</p>
             </div>
-            <div className="bg-white rounded-lg p-3 sm:p-4 shadow-md text-center">
-              <p className="text-2xl sm:text-3xl font-bold text-green-600">10K+</p>
+            <div className="bg-white rounded-lg p-2.5 sm:p-4 shadow-md text-center">
+              <p className="text-xl sm:text-3xl font-bold text-green-600">10K+</p>
               <p className="text-xs sm:text-sm text-gray-600">Pemain</p>
             </div>
-            <div className="bg-white rounded-lg p-3 sm:p-4 shadow-md text-center">
-              <p className="text-2xl sm:text-3xl font-bold text-green-600">24/7</p>
+            <div className="bg-white rounded-lg p-2.5 sm:p-4 shadow-md text-center">
+              <p className="text-xl sm:text-3xl font-bold text-green-600">24/7</p>
               <p className="text-xs sm:text-sm text-gray-600">Support</p>
             </div>
           </div>

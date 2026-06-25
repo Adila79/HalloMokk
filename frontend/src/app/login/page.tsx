@@ -81,10 +81,10 @@ login(data.user);
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-sky-100 p-6">
-      <div className="bg-white p-8 rounded-3xl shadow-lg w-full max-w-md">
+    <main className="min-h-screen flex items-center justify-center bg-sky-100 p-4 sm:p-6">
+      <div className="bg-white p-6 sm:p-8 rounded-3xl shadow-lg w-full max-w-md">
 
-        <h1 className="text-3xl font-bold text-center text-sky-400 mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-sky-400 mb-8">
           Login HalloMok
         </h1>
 

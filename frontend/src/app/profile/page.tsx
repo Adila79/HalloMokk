@@ -27,9 +27,9 @@ export default function ProfilePage() {
   };
 
   return (
-    <main className="min-h-screen bg-sky-100 flex justify-center items-center p-6">
-      <div className="bg-white p-8 rounded-3xl shadow-lg w-full max-w-md">
-        <h1 className="text-3xl font-bold text-center text-sky-400 mb-6">
+    <main className="min-h-screen bg-sky-100 flex justify-center items-center p-4 sm:p-6">
+      <div className="bg-white p-6 sm:p-8 rounded-3xl shadow-lg w-full max-w-md">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-sky-400 mb-6">
           Profile User
         </h1>
 

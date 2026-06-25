@@ -161,12 +161,12 @@ function BookingContent() {
 
   return (
 
-  <main className="min-h-screen bg-gradient-to-br from-sky-100 via-white to-blue-100 py-10 px-4">
+  <main className="min-h-screen bg-gradient-to-br from-sky-100 via-white to-blue-100 py-6 sm:py-10 px-4">
     <div className="flex justify-center">
-      <div className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white w-full max-w-4xl">
+      <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-8 rounded-3xl shadow-xl border border-white w-full max-w-4xl">
 
     <div className="mb-6">
-      <h1 className="text-4xl font-bold text-gray-800">
+      <h1 className="text-3xl sm:text-4xl font-bold text-gray-800">
         ⚽ Booking Lapangan
       </h1>
 
@@ -271,7 +271,8 @@ function BookingContent() {
               hover:shadow-xl
               transition-all
               duration-300
-              p-6
+              p-4
+              sm:p-6
               mb-4
               border
               border-gray-100

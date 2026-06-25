@@ -33,13 +33,13 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="py-20 px-6 bg-white">
+    <section id="features" className="py-20 px-4 sm:px-6 bg-white w-full">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Mengapa Pilih <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">HalloMokk?</span>
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-lg sm:text-xl text-gray-600">
             Ratusan ribu pengguna telah mempercayai kami untuk booking lapangan futsal
           </p>
         </div>
