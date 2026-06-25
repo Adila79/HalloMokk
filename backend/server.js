@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
+const pembayaranRoutes = require("./routes/pembayaran");
 const app = express();
 
 // ================= MIDDLEWARE =================
@@ -26,6 +26,7 @@ app.use("/riwayat", require("./routes/riwayat"));
 app.use("/jadwal", require("./routes/jadwal"));
 app.use("/register", require("./routes/register"));
 app.use("/upload", require("./routes/upload"));
+app.use("/pembayaran", pembayaranRoutes);
 
 
 // ================= ROOT =================
