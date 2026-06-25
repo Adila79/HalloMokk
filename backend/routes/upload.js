@@ -80,7 +80,7 @@ router.post("/", (req, res) => {
         filename: req.file.filename,
 
         url:
-        `http://localhost:3000/uploads/${req.file.filename}`
+        `http://localhost:5000/uploads/${req.file.filename}`
       },
 
       "Upload berhasil"

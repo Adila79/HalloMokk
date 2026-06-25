@@ -48,7 +48,8 @@ router.post("/", verifyToken, async (req, res) => {
     const {
       booking_id,
       metode_pembayaran,
-      jumlah_bayar
+      jumlah_bayar,
+      bukti_pembayaran
     } = req.body;
 
     if (!booking_id || !metode_pembayaran || !jumlah_bayar) {
@@ -76,14 +77,16 @@ router.post("/", verifyToken, async (req, res) => {
         booking_id,
         metode_pembayaran,
         jumlah_bayar,
+        bukti_pembayaran,
         status_pembayaran,
         tanggal_pembayaran
       )
-      VALUES (?, ?, ?, ?, NOW())`,
+      VALUES (?, ?, ?, ?, ?, NOW())`,
       [
         booking_id,
         metode_pembayaran,
         jumlah_bayar,
+        bukti_pembayaran || null,
         "pending"
       ]
     );

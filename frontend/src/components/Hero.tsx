@@ -7,42 +7,42 @@ export default function Hero() {
         {/* Left Content */}
         <div className="space-y-8">
           <div>
-            <h1 className="text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-4">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-4">
               Pesan Futsal
             </h1>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">
               Dengan Mudah
             </h2>
           </div>
 
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
             Platform booking lapangan futsal terlengkap di Indonesia. 
             Temukan lapangan terbaik di kota Anda, booking dengan mudah, 
             dan main futsal kapan saja! ⚽
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <Link href="/booking" className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-lg hover:scale-105 transition transform">
+            <Link href="/booking" className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:shadow-lg hover:scale-105 transition transform">
               Mulai Booking
             </Link>
-            <Link href="#features" className="border-2 border-green-600 text-green-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-50 transition">
+            <Link href="#features" className="border-2 border-green-600 text-green-600 px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-green-50 transition">
               Pelajari Lebih
             </Link>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 pt-8">
-            <div className="bg-white rounded-lg p-4 shadow-md">
-              <p className="text-3xl font-bold text-green-600">500+</p>
-              <p className="text-sm text-gray-600">Lapangan</p>
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-8">
+            <div className="bg-white rounded-lg p-3 sm:p-4 shadow-md text-center">
+              <p className="text-2xl sm:text-3xl font-bold text-green-600">500+</p>
+              <p className="text-xs sm:text-sm text-gray-600">Lapangan</p>
             </div>
-            <div className="bg-white rounded-lg p-4 shadow-md">
-              <p className="text-3xl font-bold text-green-600">10K+</p>
-              <p className="text-sm text-gray-600">Pemain</p>
+            <div className="bg-white rounded-lg p-3 sm:p-4 shadow-md text-center">
+              <p className="text-2xl sm:text-3xl font-bold text-green-600">10K+</p>
+              <p className="text-xs sm:text-sm text-gray-600">Pemain</p>
             </div>
-            <div className="bg-white rounded-lg p-4 shadow-md">
-              <p className="text-3xl font-bold text-green-600">24/7</p>
-              <p className="text-sm text-gray-600">Support</p>
+            <div className="bg-white rounded-lg p-3 sm:p-4 shadow-md text-center">
+              <p className="text-2xl sm:text-3xl font-bold text-green-600">24/7</p>
+              <p className="text-xs sm:text-sm text-gray-600">Support</p>
             </div>
           </div>
         </div>

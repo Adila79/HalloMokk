@@ -9,13 +9,16 @@ import {
 import {
   useEffect,
   useState,
+  Suspense,
 } from "react";
 
 import {
+  useRouter,
   useSearchParams,
 } from "next/navigation";
 
-export default function BookingPage() {
+function BookingContent() {
+  const router = useRouter();
   const searchParams =
     useSearchParams();
 
@@ -123,7 +126,7 @@ export default function BookingPage() {
     }
 
     try {
-      await createBooking(
+      const response = await createBooking(
         {
           lapangan_id:
             Number(
@@ -136,10 +139,14 @@ export default function BookingPage() {
       );
 
       alert(
-        "Booking berhasil"
+        "Booking berhasil! Silakan lakukan pembayaran."
       );
 
-      loadBooking();
+      if (response && response.bookingId) {
+        router.push(`/pembayaran?booking_id=${response.bookingId}`);
+      } else {
+        loadBooking();
+      }
 
       setTanggal("");
       setJam("");
@@ -158,7 +165,6 @@ export default function BookingPage() {
     <div className="flex justify-center">
       <div className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white w-full max-w-4xl">
 
-```
     <div className="mb-6">
       <h1 className="text-4xl font-bold text-gray-800">
         ⚽ Booking Lapangan
@@ -269,25 +275,69 @@ export default function BookingPage() {
               mb-4
               border
               border-gray-100
+              flex
+              flex-col
+              md:flex-row
+              justify-between
+              items-start
+              md:items-center
+              gap-4
             "
           >
-            <div>
-           <p className="text-black text-lg font-bold">
-             {item.nama_user}
-           </p>
+            <div className="space-y-1">
+              <p className="text-black text-lg font-bold">
+                {item.nama_user || "Pemesan"}
+              </p>
 
-           <p className="text-gray-600 mt-1">
-            ⚽ {item.nama_lapangan}
-            </p>
+              <p className="text-gray-600 flex items-center gap-2">
+                <span>⚽</span> <strong>{item.nama_lapangan}</strong>
+              </p>
 
-           <p className="text-gray-600 mt-1">
-           📅 {new Date(item.tanggal).toLocaleDateString("id-ID")}
-            </p>
+              <p className="text-gray-600 text-sm">
+                📅 {new Date(item.tanggal).toLocaleDateString("id-ID", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+              </p>
 
-          <p className="text-gray-600 mt-1">
-           🕒 {item.jam}
-            </p>
+              <p className="text-gray-600 text-sm">
+                🕒 {item.jam.substring(0, 5)}
+              </p>
 
+              <p className="text-green-600 font-bold text-base mt-2">
+                Harga: Rp {item.harga ? item.harga.toLocaleString() : "-"}
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+              {/* Status Badge */}
+              {item.status_pembayaran === null && (
+                <span className="bg-red-50 text-red-600 border border-red-200 px-4 py-2 rounded-full text-sm font-semibold text-center">
+                  Belum Bayar
+                </span>
+              )}
+              {item.status_pembayaran === "pending" && (
+                <span className="bg-yellow-50 text-yellow-600 border border-yellow-200 px-4 py-2 rounded-full text-sm font-semibold text-center">
+                  Menunggu Verifikasi
+                </span>
+              )}
+              {item.status_pembayaran === "lunas" && (
+                <span className="bg-green-50 text-green-600 border border-green-200 px-4 py-2 rounded-full text-sm font-semibold text-center">
+                  Lunas
+                </span>
+              )}
+              {item.status_pembayaran === "gagal" && (
+                <span className="bg-red-100 text-red-700 border border-red-300 px-4 py-2 rounded-full text-sm font-semibold text-center">
+                  Gagal
+                </span>
+              )}
+
+              {/* Action button */}
+              {item.status_pembayaran === null && (
+                <button
+                  onClick={() => router.push(`/pembayaran?booking_id=${item.id}`)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-xl text-sm transition-all shadow-sm hover:shadow text-center cursor-pointer"
+                >
+                  Bayar Sekarang
+                </button>
+              )}
             </div>
           </div>
         ))
@@ -297,5 +347,18 @@ export default function BookingPage() {
   </div>
 </div>
 </main>
+  );
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-black">
+        <div className="w-12 h-12 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
+        <p className="mt-4 font-semibold text-gray-700">Memuat halaman...</p>
+      </div>
+    }>
+      <BookingContent />
+    </Suspense>
   );
 }
