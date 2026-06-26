@@ -110,4 +110,58 @@ export const uploadPaymentProof = async (file: File) => {
   return response.data.data;
 };
 
+export const getAdminBookings = async (token: string) => {
+  const response = await api.get("/booking/admin/all", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data.data;
+};
+
+export const updatePaymentStatus = async (
+  id: number | string,
+  status_pembayaran: string,
+  token: string
+) => {
+  const response = await api.put(
+    `/pembayaran/${id}`,
+    { status_pembayaran },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return response.data;
+};
+
+export const createLapangan = async (
+  data: {
+    nama_lapangan: string;
+    harga: number;
+    deskripsi?: string;
+  },
+  token: string
+) => {
+  const response = await api.post("/lapangan", data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
+export const deleteLapangan = async (
+  id: number | string,
+  token: string
+) => {
+  const response = await api.delete(`/lapangan/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
 export default api;

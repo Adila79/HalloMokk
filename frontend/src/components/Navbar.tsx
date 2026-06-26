@@ -59,6 +59,15 @@ export default function Navbar() {
             </Link>
           )}
 
+          {user && user.role === "admin" && (
+            <Link 
+              href="/admin"
+              className="hover:text-green-100 bg-green-700 border border-green-500 px-3 py-1.5 rounded-lg shadow-sm hover:bg-green-800 transition font-medium"
+            >
+              Admin Panel
+            </Link>
+          )}
+
           {!user ? (
             <div className="flex items-center gap-3 ml-2">
               <Link
@@ -156,6 +165,16 @@ export default function Navbar() {
               className="py-2 hover:text-green-100 transition font-medium border-b border-green-600/30"
             >
               Profile
+            </Link>
+          )}
+
+          {user && user.role === "admin" && (
+            <Link
+              href="/admin"
+              onClick={handleLinkClick}
+              className="py-2 hover:text-green-100 font-bold border-b border-green-600/30 flex items-center gap-1.5"
+            >
+              <span>⚙️</span> Admin Panel
             </Link>
           )}
 

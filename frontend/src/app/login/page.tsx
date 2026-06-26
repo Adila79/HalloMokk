@@ -71,7 +71,11 @@ login(data.user);
 
       alert("Login berhasil");
 
-      router.push("/");
+      if (data.user && data.user.role === "admin") {
+        router.push("/admin");
+      } else {
+        router.push("/");
+      }
     } catch (error: any) {
       alert(
         error?.response?.data?.message ||

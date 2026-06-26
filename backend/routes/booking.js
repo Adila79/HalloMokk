@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
-const { verifyToken } = require("../middleware/authMiddleware");
+const { verifyToken, isAdmin } = require("../middleware/authMiddleware");
 
 
 // ================== GET SEMUA BOOKING ==================
@@ -39,6 +39,49 @@ router.get("/", verifyToken, async (req, res) => {
     });
   }
 });
+
+
+// ================== GET ALL BOOKINGS (ADMIN ONLY) ==================
+router.get("/admin/all", verifyToken, isAdmin, async (req, res) => {
+  try {
+    const [result] = await db.query(`
+      SELECT 
+        booking.id,
+        booking.tanggal,
+        booking.jam,
+        booking.status AS booking_status,
+        users.nama AS nama_user,
+        users.email AS email_user,
+        lapangan.nama_lapangan,
+        lapangan.harga,
+        pembayaran.id AS pembayaran_id,
+        pembayaran.metode_pembayaran,
+        pembayaran.jumlah_bayar,
+        pembayaran.bukti_pembayaran,
+        pembayaran.status_pembayaran,
+        pembayaran.tanggal_pembayaran
+      FROM booking
+      JOIN users ON booking.user_id = users.id
+      JOIN lapangan ON booking.lapangan_id = lapangan.id
+      LEFT JOIN pembayaran ON booking.id = pembayaran.booking_id
+      ORDER BY booking.tanggal DESC, booking.jam DESC
+    `);
+
+    res.status(200).json({
+      status: "success",
+      total: result.length,
+      data: result
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      status: "error",
+      message: "Server error"
+    });
+  }
+});
+
 
 
 // ================== GET BOOKING USER (LOGIN) ==================
