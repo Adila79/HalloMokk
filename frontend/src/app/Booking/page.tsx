@@ -181,49 +181,91 @@ function BookingContent() {
                 Belum ada booking yang tercatat.
               </div>
             ) : (
-              <div className="overflow-x-auto">
-                <table className="min-w-full text-left text-sm">
-                  <thead>
-                    <tr className="border-b border-white/10 text-slate-400">
-                      <th className="px-3 py-3 font-medium">No</th>
-                      <th className="px-3 py-3 font-medium">Lapangan</th>
-                      <th className="px-3 py-3 font-medium">Tanggal</th>
-                      <th className="px-3 py-3 font-medium">Jam</th>
-                      <th className="px-3 py-3 font-medium">Harga</th>
-                      <th className="px-3 py-3 font-medium">Status</th>
-                      <th className="px-3 py-3 font-medium">Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {bookings.map((item, index) => (
-                      <tr key={item.id} className="border-b border-white/10 text-slate-300 last:border-b-0">
-                        <td className="px-3 py-4 text-slate-400">#{index + 1}</td>
-                        <td className="px-3 py-4">
-                          <div className="font-semibold text-white">{item.nama_lapangan}</div>
-                          <div className="text-xs text-slate-500">{item.nama_user || "Pemesan"}</div>
-                        </td>
-                        <td className="px-3 py-4">{formatDate(item.tanggal)}</td>
-                        <td className="px-3 py-4">{item.jam.substring(0, 5)}</td>
-                        <td className="px-3 py-4">Rp {item.harga ? item.harga.toLocaleString() : "-"}</td>
-                        <td className="px-3 py-4">
-                          <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${getStatusBadge(item.status_pembayaran)}`}>
-                            {getStatusLabel(item.status_pembayaran)}
-                          </span>
-                        </td>
-                        <td className="px-3 py-4">
-                          {item.status_pembayaran === null ? (
-                            <button onClick={() => router.push(`/pembayaran?booking_id=${item.id}`)} className="rounded-full bg-sky-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-sky-700">
-                              Bayar
-                            </button>
-                          ) : (
-                            <span className="text-xs text-slate-500">Tersimpan</span>
-                          )}
-                        </td>
+              <>
+                <div className="hidden overflow-x-auto md:block">
+                  <table className="min-w-full text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-white/10 text-slate-400">
+                        <th className="px-3 py-3 font-medium">No</th>
+                        <th className="px-3 py-3 font-medium">Lapangan</th>
+                        <th className="px-3 py-3 font-medium">Tanggal</th>
+                        <th className="px-3 py-3 font-medium">Jam</th>
+                        <th className="px-3 py-3 font-medium">Harga</th>
+                        <th className="px-3 py-3 font-medium">Status</th>
+                        <th className="px-3 py-3 font-medium">Aksi</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {bookings.map((item, index) => (
+                        <tr key={item.id} className="border-b border-white/10 text-slate-300 last:border-b-0">
+                          <td className="px-3 py-4 text-slate-400">#{index + 1}</td>
+                          <td className="px-3 py-4">
+                            <div className="font-semibold text-white">{item.nama_lapangan}</div>
+                            <div className="text-xs text-slate-500">{item.nama_user || "Pemesan"}</div>
+                          </td>
+                          <td className="px-3 py-4">{formatDate(item.tanggal)}</td>
+                          <td className="px-3 py-4">{item.jam.substring(0, 5)}</td>
+                          <td className="px-3 py-4">Rp {item.harga ? item.harga.toLocaleString() : "-"}</td>
+                          <td className="px-3 py-4">
+                            <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${getStatusBadge(item.status_pembayaran)}`}>
+                              {getStatusLabel(item.status_pembayaran)}
+                            </span>
+                          </td>
+                          <td className="px-3 py-4">
+                            {item.status_pembayaran === null ? (
+                              <button onClick={() => router.push(`/pembayaran?booking_id=${item.id}`)} className="rounded-full bg-sky-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-sky-700">
+                                Bayar
+                              </button>
+                            ) : (
+                              <span className="text-xs text-slate-500">Tersimpan</span>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="space-y-3 md:hidden">
+                  {bookings.map((item, index) => (
+                    <div key={item.id} className="rounded-[22px] border border-white/10 bg-white/5 p-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="text-sm font-semibold text-white">{item.nama_lapangan}</p>
+                          <p className="mt-1 text-xs text-slate-400">{item.nama_user || "Pemesan"}</p>
+                        </div>
+                        <span className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold ${getStatusBadge(item.status_pembayaran)}`}>
+                          {getStatusLabel(item.status_pembayaran)}
+                        </span>
+                      </div>
+                      <div className="mt-3 grid gap-2 text-sm text-slate-300">
+                        <div className="flex items-center justify-between">
+                          <span className="text-slate-400">Tanggal</span>
+                          <span>{formatDate(item.tanggal)}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-slate-400">Jam</span>
+                          <span>{item.jam.substring(0, 5)}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-slate-400">Harga</span>
+                          <span>Rp {item.harga ? item.harga.toLocaleString() : "-"}</span>
+                        </div>
+                      </div>
+                      <div className="mt-4 flex items-center justify-between">
+                        <span className="text-xs text-slate-500">#{index + 1}</span>
+                        {item.status_pembayaran === null ? (
+                          <button onClick={() => router.push(`/pembayaran?booking_id=${item.id}`)} className="rounded-full bg-sky-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-sky-700">
+                            Bayar
+                          </button>
+                        ) : (
+                          <span className="text-xs text-slate-500">Tersimpan</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
             )}
           </div>
         </div>

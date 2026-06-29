@@ -13,12 +13,17 @@ export default function Navbar() {
 
   return (
     <nav className="relative z-50 border-b border-slate-200/70 bg-gradient-to-r from-slate-950 via-emerald-950 to-cyan-900 text-white shadow-lg">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2.5">
-          <img src="/logo.svg" alt="HalloMokk logo" className="h-10 w-10 rounded-full object-cover shadow-lg" />
-          <div>
-            <h1 className="text-xl font-bold tracking-tight text-white">HalloMokk</h1>
-            <p className="text-xs text-emerald-100">Futsal Booking System</p>
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
+        <Link href="/" className="flex min-w-0 items-center gap-2.5">
+          <img src="/logo.svg" alt="HalloMokk logo" className="h-9 w-9 shrink-0 rounded-full object-cover shadow-lg sm:h-10 sm:w-10" />
+          <div className="min-w-0">
+            <h1 className="text-lg font-bold tracking-tight text-white sm:text-xl">HalloMokk</h1>
+            <div className="flex items-center gap-2">
+              <p className="truncate text-[11px] text-emerald-100 sm:text-xs">Futsal Booking System</p>
+              <span className="hidden animate-glow rounded-full border border-emerald-400/20 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-200 sm:inline-flex">
+                Premium
+              </span>
+            </div>
           </div>
         </Link>
 
