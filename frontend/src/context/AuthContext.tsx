@@ -24,18 +24,24 @@ export const AuthProvider = ({
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
-  const logout = () => {
-  setUser(null);
+  const updateUser = (userData: any) => {
+    setUser(userData);
+    localStorage.setItem("user", JSON.stringify(userData));
+  };
 
-  localStorage.removeItem("user");
-  localStorage.removeItem("token");
-};
+  const logout = () => {
+    setUser(null);
+
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+  };
 
   return (
     <AuthContext.Provider
       value={{
         user,
         login,
+        updateUser,
         logout,
       }}
     >

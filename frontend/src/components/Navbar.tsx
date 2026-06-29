@@ -8,211 +8,77 @@ export default function Navbar() {
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleLinkClick = () => {
-    setIsOpen(false);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const handleLinkClick = () => setIsOpen(false);
 
   return (
-    <nav className="bg-green-600 text-white shadow-md relative z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-        {/* Brand/Logo */}
-        <Link href="/" className="flex items-center gap-2 cursor-pointer">
-          <span className="text-2xl">⚽</span>
-          <h1 className="text-2xl font-bold tracking-tight">
-            HalloMokk
-          </h1>
+    <nav className="relative z-50 border-b border-slate-200/70 bg-gradient-to-r from-slate-950 via-emerald-950 to-cyan-900 text-white shadow-lg">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
+        <Link href="/" className="flex items-center gap-2.5">
+          <img src="/logo.svg" alt="HalloMokk logo" className="h-10 w-10 rounded-full object-cover shadow-lg" />
+          <div>
+            <h1 className="text-xl font-bold tracking-tight text-white">HalloMokk</h1>
+            <p className="text-xs text-emerald-100">Futsal Booking System</p>
+          </div>
         </Link>
 
-        {/* Desktop Menu links */}
-        <div className="hidden md:flex gap-6 items-center text-base">
-          <Link
-            href="/"
-            className="hover:text-green-100 transition font-medium"
-          >
-            Home
-          </Link>
-
-          <Link 
-            href="/lapangan"
-            className="hover:text-green-100 transition font-medium"
-          >
-            Lapangan
-          </Link>
-
-          <Link
-            href="/booking"
-            className="hover:text-green-100 transition font-medium"
-          >
-            Booking
-          </Link>
-
-          {user && (
-            <Link 
-              href="/profile"
-              className="hover:text-green-100 transition font-medium"
-            >
-              Profile
-            </Link>
-          )}
-
+        <div className="hidden items-center gap-6 text-sm font-medium text-emerald-50 md:flex">
+          <Link href="/" className="transition hover:text-white">Home</Link>
+          <Link href="/lapangan" className="transition hover:text-white">Lapangan</Link>
+          <Link href="/booking" className="transition hover:text-white">Booking</Link>
+          {user && <Link href="/profile" className="transition hover:text-white">Profile</Link>}
           {user && user.role === "admin" && (
-            <Link 
-              href="/admin"
-              className="hover:text-green-100 bg-green-700 border border-green-500 px-3 py-1.5 rounded-lg shadow-sm hover:bg-green-800 transition font-medium"
-            >
+            <Link href="/admin" className="rounded-full bg-gradient-to-r from-emerald-600 to-sky-600 px-4 py-2 text-white shadow-sm transition hover:shadow-md">
               Admin Panel
             </Link>
           )}
 
           {!user ? (
-            <div className="flex items-center gap-3 ml-2">
-              <Link
-                href="/login"
-                className="bg-white text-green-600 px-4 py-2 rounded-lg font-semibold hover:bg-green-50 transition shadow-sm"
-              >
+            <div className="ml-2 flex items-center gap-3">
+              <Link href="/login" className="rounded-full border border-white/40 px-4 py-2 text-white transition hover:bg-white/10">
                 Login
               </Link>
-
-              <Link
-                href="/register"
-                className="border border-white px-4 py-2 rounded-lg font-semibold hover:bg-white/10 transition"
-              >
+              <Link href="/register" className="rounded-full bg-white px-4 py-2 font-semibold text-slate-900 transition hover:bg-emerald-50">
                 Register
               </Link>
             </div>
           ) : (
-            <div className="flex items-center gap-4 ml-2">
-              <span className="font-semibold text-green-100">
-                Halo, {user.nama || user.username || "User"}
-              </span>
-
-              <button
-                onClick={logout}
-                className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg font-semibold transition shadow-sm cursor-pointer"
-              >
+            <div className="ml-2 flex items-center gap-3">
+              <span className="rounded-full bg-white/10 px-3 py-2 text-sm text-emerald-50">Halo, {user.nama || user.username || "User"}</span>
+              <button onClick={logout} className="rounded-full bg-rose-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-rose-600">
                 Logout
               </button>
             </div>
           )}
         </div>
 
-        {/* Hamburger Menu Button for Mobile */}
-        <button
-          onClick={toggleMenu}
-          className="flex md:hidden items-center justify-center p-2 rounded-lg text-white hover:bg-green-700 transition focus:outline-none cursor-pointer"
-          aria-label="Toggle menu"
-        >
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            {isOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
+        <button onClick={toggleMenu} className="flex items-center justify-center rounded-full border border-white/20 p-2 text-white md:hidden" aria-label="Toggle menu">
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            {isOpen ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /> : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
           </svg>
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-green-700 border-t border-green-800 shadow-inner px-4 sm:px-6 py-4 space-y-3 flex flex-col transition-all duration-300">
-          <Link
-            href="/"
-            onClick={handleLinkClick}
-            className="py-2 hover:text-green-100 transition font-medium border-b border-green-600/30"
-          >
-            Home
-          </Link>
-
-          <Link
-            href="/lapangan"
-            onClick={handleLinkClick}
-            className="py-2 hover:text-green-100 transition font-medium border-b border-green-600/30"
-          >
-            Lapangan
-          </Link>
-
-          <Link
-            href="/booking"
-            onClick={handleLinkClick}
-            className="py-2 hover:text-green-100 transition font-medium border-b border-green-600/30"
-          >
-            Booking
-          </Link>
-
-          {user && (
-            <Link
-              href="/profile"
-              onClick={handleLinkClick}
-              className="py-2 hover:text-green-100 transition font-medium border-b border-green-600/30"
-            >
-              Profile
-            </Link>
-          )}
-
-          {user && user.role === "admin" && (
-            <Link
-              href="/admin"
-              onClick={handleLinkClick}
-              className="py-2 hover:text-green-100 font-bold border-b border-green-600/30 flex items-center gap-1.5"
-            >
-              <span>⚙️</span> Admin Panel
-            </Link>
-          )}
-
-          {!user ? (
-            <div className="flex flex-col gap-2 pt-2">
-              <Link
-                href="/login"
-                onClick={handleLinkClick}
-                className="w-full bg-white text-green-600 text-center py-2.5 rounded-xl font-semibold hover:bg-green-50 transition shadow-sm"
-              >
-                Login
-              </Link>
-
-              <Link
-                href="/register"
-                onClick={handleLinkClick}
-                className="w-full border border-white text-center py-2.5 rounded-xl font-semibold hover:bg-white/10 transition"
-              >
-                Register
-              </Link>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-3 pt-2">
-              <div className="text-sm font-medium text-green-200">
-                Halo, {user.nama || user.username || "User"}
+        <div className="border-t border-white/10 bg-slate-950/90 px-4 py-4 shadow-sm md:hidden">
+          <div className="flex flex-col gap-3 text-sm font-medium text-emerald-50">
+            <Link href="/" onClick={handleLinkClick}>Home</Link>
+            <Link href="/lapangan" onClick={handleLinkClick}>Lapangan</Link>
+            <Link href="/booking" onClick={handleLinkClick}>Booking</Link>
+            {user && <Link href="/profile" onClick={handleLinkClick}>Profile</Link>}
+            {user && user.role === "admin" && <Link href="/admin" onClick={handleLinkClick}>Admin Panel</Link>}
+            {!user ? (
+              <div className="flex flex-col gap-2 pt-2">
+                <Link href="/login" onClick={handleLinkClick} className="rounded-full border border-slate-300 px-4 py-2 text-center">Login</Link>
+                <Link href="/register" onClick={handleLinkClick} className="rounded-full bg-slate-900 px-4 py-2 text-center text-white">Register</Link>
               </div>
-
-              <button
-                onClick={() => {
-                  logout();
-                  handleLinkClick();
-                }}
-                className="w-full bg-red-500 text-center py-2.5 rounded-xl font-semibold hover:bg-red-600 transition shadow-sm cursor-pointer"
-              >
-                Logout
-              </button>
-            </div>
-          )}
+            ) : (
+              <div className="flex flex-col gap-2 pt-2">
+                <div className="rounded-full bg-slate-100 px-3 py-2 text-sm text-slate-600">Halo, {user.nama || user.username || "User"}</div>
+                <button onClick={() => { logout(); handleLinkClick(); }} className="rounded-full bg-rose-500 px-4 py-2 text-white">Logout</button>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </nav>

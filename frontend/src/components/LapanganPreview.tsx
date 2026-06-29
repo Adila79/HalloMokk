@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function LapanganPreview() {
-  const [lapangan, setLapangan] =
-    useState<any[]>([]);
+  const [lapangan, setLapangan] = useState<any[]>([]);
 
   useEffect(() => {
     loadData();
@@ -14,55 +13,42 @@ export default function LapanganPreview() {
 
   const loadData = async () => {
     try {
-      const data =
-        await getLapangan();
-
-      setLapangan(
-        data.slice(0, 3)
-      );
+      const data = await getLapangan();
+      setLapangan(data.slice(0, 3));
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <section className="py-16 px-4 sm:px-6 w-full">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">
-          Lapangan Tersedia
-        </h2>
+    <section className="w-full bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 max-w-3xl">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-emerald-600">Venue unggulan</p>
+          <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            Pilih venue yang sesuai dengan kebutuhan latihan atau pertandingan.
+          </h2>
+          <p className="mt-3 text-lg leading-8 text-slate-600">
+            Setiap lapangan didukung fasilitas yang konsisten untuk kenyamanan, keamanan, dan kualitas permainan.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {lapangan.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden"
-            >
-              <img
-                src={`https://picsum.photos/600/400?random=${item.id}`}
-                alt={item.nama_lapangan}
-                className="h-48 w-full object-cover"
-              />
-
-              <div className="p-5 text-black">
-                <h3 className="font-bold text-xl text-black">
-                  {item.nama_lapangan}
-                </h3>
-
-                <p className="mt-2 text-gray-700">
-                  {item.deskripsi}
-                </p>
-
-                <p className="text-green-600 font-bold mt-3 text-lg">
-                  Rp{" "}
-                  {item.harga.toLocaleString()}
-                </p>
-
-                <Link
-                  href={`/booking?id=${item.id}`}
-                  className="block mt-4 bg-green-600 text-white text-center py-2 rounded-lg"
-                >
-                  Booking
+            <div key={item.id} className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <img src={`https://picsum.photos/600/400?random=${item.id}`} alt={item.nama_lapangan} className="h-48 w-full object-cover" />
+              <div className="p-6 text-slate-700">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-xl font-semibold text-slate-900">{item.nama_lapangan}</h3>
+                  <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">Tersedia</span>
+                </div>
+                <p className="mt-3 text-sm leading-7 text-slate-600">{item.deskripsi}</p>
+                <div className="mt-4 flex items-center justify-between">
+                  <p className="text-lg font-semibold text-slate-900">Rp {item.harga.toLocaleString()} / jam</p>
+                  <span className="text-sm text-slate-500">Indoor</span>
+                </div>
+                <Link href={`/booking?id=${item.id}`} className="mt-5 block rounded-full bg-slate-900 px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-slate-800">
+                  Booking Sekarang
                 </Link>
               </div>
             </div>

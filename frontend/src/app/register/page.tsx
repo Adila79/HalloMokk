@@ -58,10 +58,10 @@ export default function RegisterPage() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-100 p-4 sm:p-6">
-      <div className="bg-white p-6 sm:p-8 rounded-3xl shadow-lg w-full max-w-md">
+    <main className="min-h-screen flex items-center justify-center bg-[radial-gradient(circle_at_top_left,_rgba(7,89,133,0.22),_transparent_22%),radial-gradient(circle_at_bottom_right,_rgba(5,150,105,0.24),_transparent_28%),linear-gradient(135deg,_#0f172a_0%,_#064e3b_48%,_#0f766e_100%)] p-4 sm:p-6">
+      <div className="w-full max-w-md rounded-[32px] border border-white/20 bg-slate-950/70 p-6 text-white shadow-[0_20px_70px_rgba(2,6,23,0.35)] backdrop-blur-xl sm:p-8">
 
-        <h1 className="text-2xl sm:text-3xl font-bold text-center text-sky-400 mb-8">
+        <h1 className="mb-8 text-center text-2xl font-bold text-emerald-300 sm:text-3xl">
           Register HalloMok
         </h1>
 
@@ -70,7 +70,7 @@ export default function RegisterPage() {
           className="space-y-4"
         >
           <div>
-            <label className="block mb-2 text-black font-medium">
+            <label className="block mb-2 text-slate-100 font-medium">
               Nama
             </label>
 
@@ -81,12 +81,12 @@ export default function RegisterPage() {
               onChange={(e) =>
                 setNama(e.target.value)
               }
-              className="w-full border p-3 rounded-xl text-black"
+              className="w-full rounded-xl border border-white/10 bg-slate-900/80 p-3 text-white outline-none placeholder:text-slate-400 focus:border-emerald-400"
             />
           </div>
 
           <div>
-            <label className="block mb-2 text-black font-medium">
+            <label className="block mb-2 text-slate-100 font-medium">
               Email
             </label>
 
@@ -97,12 +97,12 @@ export default function RegisterPage() {
               onChange={(e) =>
                 setEmail(e.target.value)
               }
-              className="w-full border p-3 rounded-xl text-black"
+              className="w-full rounded-xl border border-white/10 bg-slate-900/80 p-3 text-white outline-none placeholder:text-slate-400 focus:border-emerald-400"
             />
           </div>
 
           <div>
-            <label className="block mb-2 text-black font-medium">
+            <label className="block mb-2 text-slate-100 font-medium">
               Password
             </label>
 
@@ -113,13 +113,13 @@ export default function RegisterPage() {
               onChange={(e) =>
                 setPassword(e.target.value)
               }
-              className="w-full border p-3 rounded-xl text-black"
+              className="w-full rounded-xl border border-white/10 bg-slate-900/80 p-3 text-white outline-none placeholder:text-slate-400 focus:border-emerald-400"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-sky-300 hover:bg-sky-400 text-black p-3 rounded-xl font-semibold transition"
+            className="w-full rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 p-3 font-semibold text-white transition hover:shadow-lg"
           >
             Register
           </button>

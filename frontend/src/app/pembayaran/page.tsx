@@ -128,28 +128,25 @@ function PembayaranContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50 py-8 sm:py-12 px-4 md:px-8 text-black">
-      <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-start">
-        
-        {/* Left Column: Booking details & instructions */}
-        <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-3xl shadow-xl border border-white space-y-6">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.16),_transparent_24%),radial-gradient(circle_at_bottom_right,_rgba(6,182,212,0.16),_transparent_28%),linear-gradient(135deg,_#020617_0%,_#111827_50%,_#0f172a_100%)] px-4 py-8 sm:px-6 lg:px-8 text-slate-100">
+      <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="rounded-[32px] border border-white/10 bg-slate-950/75 p-6 shadow-[0_25px_80px_rgba(2,6,23,0.35)] backdrop-blur-xl sm:p-8">
           <div>
-            <span className="text-sm font-semibold text-green-600 uppercase tracking-wider">Langkah Terakhir</span>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-1">Pembayaran</h1>
-            <p className="text-gray-500 text-sm mt-1">Segera selesaikan pembayaran Anda agar jadwal tidak hangus.</p>
+            <span className="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-300">Langkah terakhir</span>
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Pembayaran</h1>
+            <p className="mt-2 text-sm leading-7 text-slate-400">Selesaikan pembayaran Anda agar jadwal tetap aman dan booking segera diproses.</p>
           </div>
 
-          <div className="border-t border-gray-100 pt-6 space-y-4">
-            <h3 className="font-bold text-gray-800 text-lg">Ringkasan Pesanan</h3>
-            
-            <div className="bg-gray-50 rounded-2xl p-4 space-y-3">
-              <div className="flex justify-between">
-                <span className="text-gray-500">Lapangan</span>
-                <span className="font-semibold text-gray-800">{booking.nama_lapangan}</span>
+          <div className="mt-6 rounded-[24px] border border-white/10 bg-gradient-to-br from-emerald-500/10 to-sky-500/10 p-5">
+            <h3 className="text-lg font-semibold text-white">Ringkasan pesanan</h3>
+            <div className="mt-4 space-y-3 text-sm">
+              <div className="flex items-center justify-between rounded-2xl bg-slate-900/70 px-4 py-3">
+                <span className="text-slate-400">Lapangan</span>
+                <span className="font-semibold text-white">{booking.nama_lapangan}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Tanggal</span>
-                <span className="font-semibold text-gray-800">
+              <div className="flex items-center justify-between rounded-2xl bg-slate-900/70 px-4 py-3">
+                <span className="text-slate-400">Tanggal</span>
+                <span className="font-semibold text-white">
                   {new Date(booking.tanggal).toLocaleDateString("id-ID", {
                     weekday: "long",
                     year: "numeric",
@@ -158,120 +155,104 @@ function PembayaranContent() {
                   })}
                 </span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Jam</span>
-                <span className="font-semibold text-gray-800">{booking.jam.substring(0, 5)} WIB</span>
+              <div className="flex items-center justify-between rounded-2xl bg-slate-900/70 px-4 py-3">
+                <span className="text-slate-400">Jam</span>
+                <span className="font-semibold text-white">{booking.jam.substring(0, 5)} WIB</span>
               </div>
-              <div className="border-t border-gray-200 my-2 pt-2 flex justify-between items-center">
-                <span className="font-bold text-gray-800">Total Biaya</span>
-                <span className="text-xl font-extrabold text-green-600">
-                  Rp {booking.harga ? booking.harga.toLocaleString() : "-"}
-                </span>
+              <div className="flex items-center justify-between rounded-2xl border border-emerald-400/20 bg-emerald-500/10 px-4 py-3">
+                <span className="font-semibold text-white">Total biaya</span>
+                <span className="text-lg font-semibold text-emerald-300">Rp {booking.harga ? booking.harga.toLocaleString() : "-"}</span>
               </div>
             </div>
           </div>
 
-          <div className="space-y-3">
-            <h3 className="font-bold text-gray-800 text-lg">Rekening Tujuan</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-              <div className="border border-green-100 rounded-2xl p-4 bg-green-50/50">
-                <p className="font-bold text-green-700">Bank BCA</p>
-                <p className="text-gray-800 mt-1 font-mono text-base">804-1234-567</p>
-                <p className="text-xs text-gray-500">a.n. PT HalloMok Futsal</p>
+          <div className="mt-6 space-y-3">
+            <h3 className="text-lg font-semibold text-white">Rekening tujuan</h3>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="rounded-[22px] border border-emerald-400/20 bg-emerald-500/10 p-4">
+                <p className="font-semibold text-emerald-300">Bank BCA</p>
+                <p className="mt-2 font-mono text-base text-white">804-1234-567</p>
+                <p className="mt-1 text-xs text-slate-400">a.n. PT HalloMokk Futsal</p>
               </div>
-              <div className="border border-emerald-100 rounded-2xl p-4 bg-emerald-50/50">
-                <p className="font-bold text-emerald-700">Bank Mandiri</p>
-                <p className="text-gray-800 mt-1 font-mono text-base">137-00-1234-5678</p>
-                <p className="text-xs text-gray-500">a.n. PT HalloMok Futsal</p>
+              <div className="rounded-[22px] border border-cyan-400/20 bg-cyan-500/10 p-4">
+                <p className="font-semibold text-cyan-300">Bank Mandiri</p>
+                <p className="mt-2 font-mono text-base text-white">137-00-1234-5678</p>
+                <p className="mt-1 text-xs text-slate-400">a.n. PT HalloMokk Futsal</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Payment Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white p-4 sm:p-6 md:p-8 rounded-3xl shadow-xl border border-gray-100 space-y-6"
-        >
+        <form onSubmit={handleSubmit} className="rounded-[32px] border border-white/10 bg-white/95 p-6 shadow-[0_20px_70px_rgba(2,6,23,0.25)] sm:p-8">
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Form Pembayaran</h2>
-            <p className="text-gray-500 text-sm mt-1">Pilih metode dan unggah bukti transfer.</p>
+            <h2 className="text-2xl font-semibold text-slate-900">Form pembayaran</h2>
+            <p className="mt-1 text-sm text-slate-500">Pilih metode dan unggah bukti transfer dengan cepat.</p>
           </div>
 
-          {/* Payment Method Selector */}
-          <div className="space-y-3">
-            <label className="block text-sm font-semibold text-gray-700">Metode Pembayaran</label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="mt-6 space-y-3">
+            <label className="block text-sm font-semibold text-slate-700">Metode pembayaran</label>
+            <div className="grid gap-3 sm:grid-cols-2">
               {[
-                { id: "Transfer BCA", label: "Transfer BCA" },
-                { id: "Transfer Mandiri", label: "Transfer Mandiri" },
-                { id: "GoPay", label: "GoPay" },
-                { id: "DANA", label: "DANA" },
+                { id: "Transfer BCA", label: "Transfer BCA", icon: "🏦" },
+                { id: "Transfer Mandiri", label: "Transfer Mandiri", icon: "💳" },
+                { id: "GoPay", label: "GoPay", icon: "📱" },
+                { id: "DANA", label: "DANA", icon: "💸" },
               ].map((method) => (
                 <label
                   key={method.id}
-                  className={`flex items-center justify-between p-4 rounded-2xl border cursor-pointer transition-all ${
+                  className={`flex cursor-pointer items-center justify-between rounded-2xl border p-4 transition-all hover:-translate-y-0.5 hover:shadow-md ${
                     metodePembayaran === method.id
-                      ? "border-green-600 bg-green-50/20 text-green-700 font-bold"
-                      : "border-gray-200 hover:border-gray-300 text-gray-600"
+                      ? "border-emerald-400 bg-emerald-50 text-emerald-700"
+                      : "border-slate-200 bg-white text-slate-600 hover:border-cyan-300"
                   }`}
                 >
-                  <span className="text-sm">{method.label}</span>
+                  <span className="text-sm font-semibold">{method.icon} {method.label}</span>
                   <input
                     type="radio"
                     name="metodePembayaran"
                     value={method.id}
                     checked={metodePembayaran === method.id}
                     onChange={(e) => setMetodePembayaran(e.target.value)}
-                    className="accent-green-600 cursor-pointer"
+                    className="accent-emerald-600"
                   />
                 </label>
               ))}
             </div>
           </div>
 
-          {/* Payment Proof Image Upload */}
-          <div className="space-y-3">
-            <label className="block text-sm font-semibold text-gray-700">Unggah Bukti Transfer</label>
-            <div className="border-2 border-dashed border-gray-200 hover:border-green-400 rounded-2xl p-6 text-center cursor-pointer transition relative">
-              <input
-                type="file"
-                accept="image/png, image/jpeg"
-                onChange={handleFileChange}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                required
-              />
+          <div className="mt-6 space-y-3">
+            <label className="block text-sm font-semibold text-slate-700">Unggah bukti transfer</label>
+            <div className="group relative cursor-pointer rounded-[24px] border-2 border-dashed border-slate-200 bg-slate-50 p-6 text-center transition hover:border-emerald-400 hover:bg-emerald-50/60">
+              <input type="file" accept="image/png, image/jpeg" onChange={handleFileChange} className="absolute inset-0 h-full w-full cursor-pointer opacity-0" required />
               <div className="space-y-2">
-                <span className="text-4xl block">📸</span>
-                <p className="text-sm font-medium text-gray-600">Klik atau seret file gambar untuk mengunggah</p>
-                <p className="text-xs text-gray-400">Hanya file JPG/PNG dengan ukuran maksimal 2MB</p>
+                <span className="block text-4xl">📸</span>
+                <p className="text-sm font-semibold text-slate-700">Klik untuk mengunggah bukti</p>
+                <p className="text-xs text-slate-500">JPG atau PNG, maksimal 2MB</p>
               </div>
             </div>
           </div>
 
-          {/* Proof Preview */}
           {buktiPreview && (
-            <div className="space-y-2">
-              <span className="block text-xs font-semibold text-gray-500">Pratinjau Bukti:</span>
-              <div className="relative rounded-2xl overflow-hidden border border-gray-100 max-h-48 flex justify-center bg-gray-50">
-                <img src={buktiPreview} alt="Bukti Transfer" className="object-contain max-h-48" />
+            <div className="mt-6 space-y-2">
+              <span className="block text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">Pratinjau bukti</span>
+              <div className="flex max-h-48 justify-center overflow-hidden rounded-[20px] border border-slate-200 bg-slate-100 p-2">
+                <img src={buktiPreview} alt="Bukti Transfer" className="max-h-48 object-contain" />
               </div>
             </div>
           )}
 
-          {/* Submit Button */}
           <button
             type="submit"
             disabled={submitting}
-            className={`w-full py-4 rounded-2xl font-semibold text-white transition-all shadow-lg text-center cursor-pointer ${
+            className={`mt-8 w-full rounded-2xl py-4 text-center font-semibold text-white shadow-lg transition-all ${
               submitting
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 hover:shadow-xl hover:scale-[1.01]"
+                ? "cursor-not-allowed bg-slate-400"
+                : "bg-gradient-to-r from-emerald-600 via-cyan-600 to-sky-600 hover:-translate-y-0.5 hover:shadow-xl"
             }`}
           >
             {submitting ? (
               <span className="flex items-center justify-center gap-2">
-                <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
                 Memproses...
               </span>
             ) : (
@@ -279,7 +260,6 @@ function PembayaranContent() {
             )}
           </button>
         </form>
-
       </div>
     </div>
   );
