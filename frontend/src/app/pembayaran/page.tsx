@@ -171,12 +171,22 @@ function PembayaranContent() {
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="rounded-[22px] border border-emerald-400/20 bg-emerald-500/10 p-4">
                 <p className="font-semibold text-emerald-300">Bank BCA</p>
-                <p className="mt-2 font-mono text-base text-white">804-1234-567</p>
+                <p className="mt-2 font-mono text-base text-white">7651714351</p>
                 <p className="mt-1 text-xs text-slate-400">a.n. PT HalloMokk Futsal</p>
               </div>
               <div className="rounded-[22px] border border-cyan-400/20 bg-cyan-500/10 p-4">
                 <p className="font-semibold text-cyan-300">Bank Mandiri</p>
                 <p className="mt-2 font-mono text-base text-white">137-00-1234-5678</p>
+                <p className="mt-1 text-xs text-slate-400">a.n. PT HalloMokk Futsal</p>
+              </div>
+              <div className="rounded-[22px] border border-cyan-400/20 bg-cyan-500/10 p-4">
+                <p className="font-semibold text-cyan-300">DANA</p>
+                <p className="mt-2 font-mono text-base text-white">08957382954</p>
+                <p className="mt-1 text-xs text-slate-400">a.n. PT HalloMokk Futsal</p>
+              </div>
+              <div className="rounded-[22px] border border-cyan-400/20 bg-cyan-500/10 p-4">
+                <p className="font-semibold text-cyan-300">GoPay</p>
+                <p className="mt-2 font-mono text-base text-white">08957382954</p>
                 <p className="mt-1 text-xs text-slate-400">a.n. PT HalloMokk Futsal</p>
               </div>
             </div>

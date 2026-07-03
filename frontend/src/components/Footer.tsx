@@ -34,7 +34,7 @@ export default function Footer() {
           <div>
             <h4 className="mb-4 text-lg font-semibold">Hubungi Kami</h4>
             <ul className="space-y-2 text-sm text-slate-400">
-              <li>📞 +62 800-FUTSAL</li>
+              <li>📞 +62 895-7382-954</li>
               <li>📧 support@hallomokk.com</li>
               <li className="pt-2">Instagram • Facebook • TikTok</li>
             </ul>
