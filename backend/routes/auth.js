@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 
-// ================== GET LOGIN (BROWSER) ==================
 router.get("/login", async (req, res) => {
   const { email, password } = req.query;
 
@@ -40,7 +39,6 @@ router.get("/login", async (req, res) => {
       });
     }
 
-    // FIX JWT + ROLE
     const token = jwt.sign(
       {
         id: user[0].id,
@@ -71,7 +69,6 @@ router.get("/login", async (req, res) => {
 });
 
 
-// ================== POST LOGIN (POSTMAN) ==================
 router.post("/login", async (req, res) => {
 
   const { email, password } = req.body;
@@ -106,7 +103,6 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    // FIX JWT + ROLE
     const token = jwt.sign(
       {
         id: user[0].id,

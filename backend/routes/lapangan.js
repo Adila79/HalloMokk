@@ -3,7 +3,6 @@ const db = require("../db");
 const { success, error } = require("../utils/response");
 const { verifyToken, isAdmin } = require("../middleware/authMiddleware");
 
-// ================= GET (PUBLIC) =================
 router.get("/", async (req, res) => {
   try {
 
@@ -37,7 +36,6 @@ router.get("/", async (req, res) => {
 });
 
 
-// ================= POST (ADMIN ONLY) =================
 router.post("/", verifyToken, isAdmin, async (req, res) => {
   try {
 
@@ -84,7 +82,6 @@ router.post("/", verifyToken, isAdmin, async (req, res) => {
 });
 
 
-// ================= DELETE (ADMIN ONLY) =================
 router.delete("/:id", verifyToken, isAdmin, async (req, res) => {
   try {
 

@@ -36,38 +36,18 @@ export default function LoginPage() {
         password,
       });
 
-      // simpan token
+      localStorage.setItem("token", data.token);
 
-localStorage.setItem(
+      localStorage.setItem("user", JSON.stringify(data.user));
 
-"token",
+      login(data.user);
 
-data.token
+      localStorage.setItem(
+        "user",
+        JSON.stringify(data.user)
+      );
 
-);
-
-// simpan data user
-
-localStorage.setItem(
-
-"user",
-
-JSON.stringify(data.user)
-
-);
-
-// simpan ke Context API
-
-login(data.user);
-
-// simpan data user
-localStorage.setItem(
-  "user",
-  JSON.stringify(data.user)
-);
-
-// simpan user ke Context API
-login(data.user);
+      login(data.user);
 
       alert("Login berhasil");
 

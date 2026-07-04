@@ -3,22 +3,18 @@ const cors = require("cors");
 const pembayaranRoutes = require("./routes/pembayaran");
 const app = express();
 
-// ================= MIDDLEWARE =================
 app.use(cors());
 app.use(express.json());
 
-// ✅ STATIC FILE public/uploads
 app.use("/uploads", express.static("public/uploads"));
 
 
-// DEBUG
 app.use((req,res,next)=>{
   console.log(`${req.method} ${req.url}`);
   next();
 });
 
 
-// ================= ROUTES =================
 app.use("/auth", require("./routes/auth"));
 app.use("/lapangan", require("./routes/lapangan"));
 app.use("/booking", require("./routes/booking"));
@@ -29,7 +25,6 @@ app.use("/upload", require("./routes/upload"));
 app.use("/pembayaran", pembayaranRoutes);
 
 
-// ================= ROOT =================
 app.get("/",(req,res)=>{
   res.json({
     message:"API Futsal Booking Jalan ",
@@ -47,7 +42,6 @@ app.get("/",(req,res)=>{
 });
 
 
-// ================= 404 =================
 app.use((req,res)=>{
   res.status(404).json({
     status:"error",
@@ -56,7 +50,6 @@ app.use((req,res)=>{
 });
 
 
-// ================= GLOBAL ERROR =================
 app.use((err,req,res,next)=>{
   console.error("GLOBAL ERROR:",err);
 
@@ -74,7 +67,6 @@ app.use((err,req,res,next)=>{
 });
 
 
-// ================= SERVER =================
 const PORT = 5000;
 
 app.listen(PORT, "0.0.0.0", () => {

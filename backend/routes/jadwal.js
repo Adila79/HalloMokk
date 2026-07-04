@@ -2,11 +2,10 @@ const router = require("express").Router();
 const db = require("../db");
 
 router.get("/", async (req, res) => {
-  console.log("MASUK JADWAL"); // debug
+  console.log("MASUK JADWAL");
 
   const { tanggal, lapangan_id } = req.query;
 
-  // 🔒 biar gak pending kalau kosong
   if (!tanggal || !lapangan_id) {
     return res.status(400).json({
       message: "tanggal dan lapangan_id wajib diisi"

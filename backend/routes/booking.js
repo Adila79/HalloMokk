@@ -4,7 +4,6 @@ const db = require("../db");
 const { verifyToken, isAdmin } = require("../middleware/authMiddleware");
 
 
-// ================== GET SEMUA BOOKING ==================
 router.get("/", verifyToken, async (req, res) => {
   try {
     const [result] = await db.query(`
@@ -41,7 +40,6 @@ router.get("/", verifyToken, async (req, res) => {
 });
 
 
-// ================== GET ALL BOOKINGS (ADMIN ONLY) ==================
 router.get("/admin/all", verifyToken, isAdmin, async (req, res) => {
   try {
     const [result] = await db.query(`
@@ -84,7 +82,6 @@ router.get("/admin/all", verifyToken, isAdmin, async (req, res) => {
 
 
 
-// ================== GET BOOKING USER (LOGIN) ==================
 router.get("/me", verifyToken, async (req, res) => {
   const user_id = req.user.id;
 
@@ -122,7 +119,6 @@ router.get("/me", verifyToken, async (req, res) => {
 });
 
 
-// ================== POST BOOKING ==================
 router.post("/", verifyToken, async (req, res) => {
   try {
 
@@ -135,7 +131,6 @@ router.post("/", verifyToken, async (req, res) => {
     console.log("USER ID =", user_id);
     console.log("LAPANGAN ID =", lapangan_id);
 
-    // VALIDASI INPUT
     if (!lapangan_id || !tanggal || !jam) {
       return res.status(400).json({
         status: "error",
@@ -195,7 +190,6 @@ router.post("/", verifyToken, async (req, res) => {
   }
 });
 
-// ================== GET DETAIL BOOKING ==================
 router.get("/:id", verifyToken, async (req, res) => {
   try {
     const [result] = await db.query(`

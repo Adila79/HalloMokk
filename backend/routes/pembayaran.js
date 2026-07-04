@@ -3,7 +3,6 @@ const router = express.Router();
 const db = require("../db");
 const { verifyToken, isAdmin } = require("../middleware/authMiddleware");
 
-// ================== GET SEMUA PEMBAYARAN USER ==================
 router.get("/", verifyToken, async (req, res) => {
   try {
     const user_id = req.user.id;
@@ -41,7 +40,6 @@ router.get("/", verifyToken, async (req, res) => {
   }
 });
 
-// ================== POST PEMBAYARAN ==================
 router.post("/", verifyToken, async (req, res) => {
   try {
 
@@ -106,12 +104,10 @@ router.post("/", verifyToken, async (req, res) => {
   }
 });
 
-// ================== UPDATE STATUS ==================
 router.put("/:id", verifyToken, isAdmin, async (req, res) => {
   try {
     const { status_pembayaran } = req.body;
 
-    // Ambil booking_id dari pembayaran
     const [pembayaran] = await db.query(
       "SELECT booking_id FROM pembayaran WHERE id = ?",
       [req.params.id]
@@ -126,7 +122,6 @@ router.put("/:id", verifyToken, isAdmin, async (req, res) => {
 
     const booking_id = pembayaran[0].booking_id;
 
-    // Tentukan status booking berdasarkan status pembayaran
     let booking_status = "pending";
     if (status_pembayaran === "lunas") {
       booking_status = "approved";
@@ -134,16 +129,13 @@ router.put("/:id", verifyToken, isAdmin, async (req, res) => {
       booking_status = "cancelled";
     }
 
-    // Mulai transaksi
     await db.query("START TRANSACTION");
 
-    // Update status pembayaran
     await db.query(
       "UPDATE pembayaran SET status_pembayaran = ? WHERE id = ?",
       [status_pembayaran, req.params.id]
     );
 
-    // Update status booking
     await db.query(
       "UPDATE booking SET status = ? WHERE id = ?",
       [booking_status, booking_id]

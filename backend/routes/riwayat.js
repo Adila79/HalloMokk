@@ -1,14 +1,12 @@
 const router = require("express").Router();
 const db = require("../db");
 
-// ================== HELPER ==================
 function getStatus(tanggal, jam) {
   const now = new Date();
   const bookingTime = new Date(`${tanggal} ${jam}`);
   return bookingTime < now ? "selesai" : "upcoming";
 }
 
-// ================== GET SEMUA RIWAYAT ==================
 router.get("/", async (req, res) => {
   try {
     const [result] = await db.query(`
@@ -51,7 +49,6 @@ router.get("/", async (req, res) => {
 });
 
 
-// ================== GET RIWAYAT BY USER ==================
 router.get("/user/:user_id", async (req, res) => {
   const { user_id } = req.params;
 
@@ -99,7 +96,6 @@ router.get("/user/:user_id", async (req, res) => {
 });
 
 
-// ================== GET RIWAYAT BY TANGGAL ==================
 router.get("/tanggal/:tanggal", async (req, res) => {
   const { tanggal } = req.params;
 

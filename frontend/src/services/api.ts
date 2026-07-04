@@ -47,7 +47,6 @@ export const createBooking = async (
   return response.data;
 };
 
-// TAMBAHKAN INI
 export const getBooking = async (
   token: string
 ) => {

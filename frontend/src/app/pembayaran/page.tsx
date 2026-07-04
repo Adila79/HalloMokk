@@ -76,11 +76,9 @@ function PembayaranContent() {
     setSubmitting(true);
 
     try {
-      // 1. Upload the payment proof receipt image
       const uploadRes = await uploadPaymentProof(buktiFile);
       const filename = uploadRes.filename;
 
-      // 2. Submit payment information
       await createPayment(
         {
           booking_id: Number(bookingId),

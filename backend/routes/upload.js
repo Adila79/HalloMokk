@@ -4,7 +4,6 @@ const multer = require("multer");
 const { success, error } = require("../utils/response");
 
 
-// ================= STORAGE =================
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/uploads/");
@@ -16,7 +15,6 @@ const storage = multer.diskStorage({
 });
 
 
-// ================= VALIDASI FILE =================
 const fileFilter = (req, file, cb) => {
 
   if (
@@ -34,7 +32,6 @@ const fileFilter = (req, file, cb) => {
 };
 
 
-// ================= MULTER =================
 const upload = multer({
   storage,
   fileFilter,
@@ -45,13 +42,11 @@ const upload = multer({
 });
 
 
-// ================= TEST ENDPOINT =================
 router.get("/", (req, res) => {
   res.send("Upload endpoint aktif");
 });
 
 
-// ================= UPLOAD =================
 router.post("/", (req, res) => {
 
   upload.single("file")(req, res, (err) => {
